@@ -1,0 +1,30 @@
+version: '3'
+services:
+  dev:
+    container_name: ekom-front-dev
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+      # network: host
+    volumes:
+      - ./client:/opt/app
+      - /opt/app/node_modules
+      - /opt/app/.next
+    ports:
+      - '3000:3000'
+    # stdin_open: true
+    # tty: true
+  prod:
+    container_name: ekom-front-prod
+    build:
+      target: production
+      context: ./client
+      dockerfile: Dockerfile.prod
+      # network: host
+    # restart: always
+    volumes:
+      - /client:/opt/app
+      - /opt/app/node_modules
+      - /opt/app/.next
+    ports:
+      - '8000:8000'
