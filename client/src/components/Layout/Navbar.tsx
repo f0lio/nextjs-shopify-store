@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon, ShoppingCartIcon } from "@heroicons/react/outline";
+import Link from "next/link";
 
 const navigation = [
   { name: "Home", href: "#" },
   { name: "Top Sales ", href: "#" },
   { name: "Shop", href: "#" },
-  { name: "F.A.Q", href: "#" },
 ];
 
 const Navbar = () => {
@@ -21,13 +21,15 @@ const Navbar = () => {
             >
               <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                 <div className="flex items-center justify-between w-full md:w-auto">
-                  <a href="#">
-                    <span className="sr-only">Workflow</span>
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    />
-                  </a>
+                  <Link href="/">
+                    <div className="cursor-pointer">
+                      <span className="sr-only">Workflow</span>
+                      <img
+                        className="h-8 w-auto sm:h-10"
+                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                      />
+                    </div>
+                  </Link>
                   <div className="-mr-2 flex items-center md:hidden">
                     <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                       <span className="sr-only">Open main menu</span>
@@ -42,11 +44,14 @@ const Navbar = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="font-medium text-gray-500 hover:text-gray-900"
+                    className="font-medium text-gray-500 hover:text-indigo-600"
                   >
                     {item.name}
                   </a>
                 ))}
+                <a className="cursor-pointer hover:text-indigo-700 text-indigo-500 ">
+                  <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+                </a>
               </div>
             </nav>
           </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import slugify from "slugify";
+import { Button } from "@components/common";
 
 /* TODO:
     -Seperate products by category
         -two rows for each category
-    
 */
 
 const products = [
@@ -165,7 +165,7 @@ const products = [
 ];
 
 const ProductCard = ({ key, product }: { key: any; product: any }) => (
-  <Link href={"product/" + slugify(product.name, { lower: true })}>
+  <Link href={"products/" + slugify(product.name, { lower: true })}>
     <div key={product.id} className="group relative">
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
         <img
@@ -202,6 +202,9 @@ const HomeProducts = () => {
           {products.map((product, key) => (
             <ProductCard key={key} product={product} />
           ))}
+        </div>
+        <div className="flex justify-center py-8">
+          <Button>Show More</Button>
         </div>
       </div>
     </ul>
