@@ -5,13 +5,13 @@ import Link from "next/link";
 
 const FeaturedCard = ({ title, imgSrc }) => (
   <article className="h-24 p-4">
-    {/* <p className="text-center py-3 font-bold">{title}</p> */}
+    {/* <p className="py-3 font-bold text-center">{title}</p> */}
   </article>
 );
 
 export default () => (
   <section className="flex-col-2 flex h-96 w-full justify-center bg-gray-100">
-    <div className=" flex w-full  max-w-7xl items-center justify-between px-3">
+    <div className="flex w-full max-w-7xl items-center justify-between px-3">
       <FeaturedCard title="Lorem">
         {/* <FaShippingFast className="w-full h-full" /> */}
       </FeaturedCard>

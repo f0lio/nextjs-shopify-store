@@ -56,7 +56,7 @@ const Footer = () => {
             </svg>
           </a>
           {/* Twitter */}
-          <a className="ml-3 cursor-pointer  text-gray-500" href="#">
+          <a className="ml-3 cursor-pointer text-gray-500 " href="#">
             <svg
               fill="currentColor"
               strokeLinecap="round"

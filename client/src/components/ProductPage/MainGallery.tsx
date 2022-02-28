@@ -71,7 +71,7 @@ const ProductGallery = ({ images }) => {
             quality={100}
             // layout="responsive"
             objectFit="contain"
-            className='cursor-zoom-in w-full h-full top-0'
+            className='top-0 w-full h-full cursor-zoom-in'
           /> */}
       </figure>
     </div>

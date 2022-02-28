@@ -192,8 +192,8 @@ const ProductCard = ({ product }: { product: any }) => (
 
 const HomeProducts = () => {
   return (
-    <ul className=" flex w-full justify-center">
-      <div className="  w-full py-16 px-4 sm:py-24 lg:max-w-7xl ">
+    <ul className="flex w-full justify-center ">
+      <div className="w-full px-4 py-16 sm:py-24 lg:max-w-7xl">
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
           Customers also purchased
         </h2>

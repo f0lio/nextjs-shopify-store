@@ -40,7 +40,7 @@ const ProductDetails = ({ product }) => {
           {product?.name}
         </h1>
       </div>
-      <div className="w-full lg:col-span-2 lg:border-b lg:border-gray-200  lg:pt-6  lg:pb-8 ">
+      <div className="w-full lg:col-span-2 lg:border-b lg:border-gray-200 lg:pt-6 lg:pb-8 ">
         <div>
           <h3 className="sr-only">Description</h3>
 

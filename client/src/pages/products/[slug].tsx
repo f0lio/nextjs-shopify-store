@@ -96,7 +96,7 @@ const ProductPage = () => {
         </div>
 
         <div className="grid w-full grid-cols-1 px-4 py-16 sm:px-0 lg:grid-cols-6">
-          <div className=" col-span-4 w-full pb-10 lg:px-8 lg:pt-0 lg:pb-24">
+          <div className="col-span-4 w-full pb-10 lg:px-8 lg:pt-0 lg:pb-24">
             <ProductGallery images={product?.images} />
           </div>
 

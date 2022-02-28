@@ -68,7 +68,7 @@ const Navbar = () => {
         >
           <Popover.Panel
             focus
-            className="absolute inset-x-0 top-0  z-50 origin-top-right transform p-2 transition md:hidden"
+            className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition md:hidden"
           >
             <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
               <div className="flex items-center justify-between px-5 pt-4">
@@ -80,7 +80,7 @@ const Navbar = () => {
                   />
                 </div>
                 <div className="-mr-2 ">
-                  <Popover.Button className="inline-flex items-center  justify-center rounded-md bg-white text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Close main menu</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
