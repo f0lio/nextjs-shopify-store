@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default () => (
-  <div className=" bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden w-full max-w-7xl  py-16 sm:py-24">
-    <section className="lg:text-left flex items-center px-4  ">
+  <div className=" grid w-full max-w-7xl grid-cols-1 overflow-hidden bg-white py-16  sm:py-24 lg:grid-cols-2">
+    <section className="flex items-center px-4 lg:text-left  ">
       <div className="flex-col">
-        <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
           <span className="">Always in</span>{" "}
           <span className=" text-indigo-600">style!</span>
         </h1>
-        <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+        <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
           Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
           cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat
           aliqua.
@@ -18,7 +18,7 @@ export default () => (
         <div className="mt-5 sm:mt-8 sm:flex  lg:justify-start">
           <div>
             <Link href="/explore">
-              <button className=" flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-2xl text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+              <button className=" flex items-center justify-center rounded-2xl border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg">
                 Explore
               </button>
             </Link>

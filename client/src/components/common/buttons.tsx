@@ -57,7 +57,7 @@ const Button: React.FC = <T extends ElementType = "button">({
         classes.variant[variant],
         pill && classes.pill,
         disabled && classes.disabled,
-        className
+        className,
       )}
       {...props}
     >

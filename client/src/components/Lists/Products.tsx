@@ -167,11 +167,11 @@ const products = [
 const ProductCard = ({ product }: { product: any }) => (
   <Link href={"products/" + slugify(product.name, { lower: true })}>
     <div key={product.id} className="group relative">
-      <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+      <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
         <img
           src={product.imageSrc}
           alt={product.imageAlt}
-          className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
       <div className="mt-4 flex justify-between">
@@ -192,8 +192,8 @@ const ProductCard = ({ product }: { product: any }) => (
 
 const HomeProducts = () => {
   return (
-    <ul className=" w-full flex justify-center">
-      <div className="  py-16 sm:py-24 w-full px-4 lg:max-w-7xl ">
+    <ul className=" flex w-full justify-center">
+      <div className="  w-full py-16 px-4 sm:py-24 lg:max-w-7xl ">
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
           Customers also purchased
         </h2>

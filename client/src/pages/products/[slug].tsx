@@ -1,16 +1,18 @@
-import { useState } from "react";
-
-import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
+import { useRouter } from "next/router";
 
+import { Button } from "@components/common";
 import { StarIcon } from "@heroicons/react/solid";
 import { RadioGroup } from "@headlessui/react";
 import Layout from "@components/Layout";
 import Breadcrumb from "@components/Layout/Breadcrumb";
-import { Button } from "@components/common";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import cn from "classnames";
+
+import "swiper/css";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -81,16 +83,17 @@ const reviews = { href: "#", average: 4, totalCount: 117 };
 //   tags?: string[];
 // }
 
-const OtherImages = ({ images, currentImage, setCurrentImage }) => {
-
+const OtherImages = ({ images, currentImage, onClick }) => {
   return (
     <div>
       {[...images].map((image, index) => (
-        <div className='pb-6' key={index} >
+        <div className="pb-6" key={index}>
           <img
-            className={cn('border-black cursor-pointer h-14 w-12 object-cover',
-              index == currentImage && ' ring-1')}
-            onClick={() => setCurrentImage(index)}
+            className={cn(
+              "h-14 w-12 cursor-pointer border-black object-cover",
+              index == currentImage && " ring-1",
+            )}
+            onClick={() => onClick(index)}
             src={image?.src || ""}
             alt={image?.alt || ""}
           />
@@ -108,22 +111,39 @@ const OtherImages = ({ images, currentImage, setCurrentImage }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const ProductGallery = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => { }, [currentImage]);
+
   return (
-    <div className="grid sm:px-4 grid-cols-12 max-h-screen h-full">
-      <div className='col-span-1 hidden sm:flex sm:justify-center'>
-        <OtherImages images={images} currentImage={currentImage} setCurrentImage={setCurrentImage} />
-      </div>
-      <figure className="rounded-lg col-span-11 h-full px-4">
-        <img
-          className='cursor-zoom-in w-full '
-          src={images[currentImage]?.src || "https://images.unsplash.com/photo-1564859228273-274232fdb516?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"}
-          alt={images[currentImage]?.alt}
+    <div className="grid h-full max-h-screen grid-cols-12 sm:px-4">
+      <div className="col-span-1 hidden sm:flex sm:justify-center">
+        <OtherImages
+          images={images}
+          currentImage={currentImage}
+          onClick={setCurrentImage}
         />
+      </div>
+      <figure className="col-span-11 h-full rounded-lg px-2">
+        <Swiper onSlideChange={(e) => setCurrentImage(e.snapIndex)}>
+          {images?.map((image, index) => (
+            <SwiperSlide>
+              <img
+                className="w-full cursor-zoom-in "
+                src={
+                  images[index]?.src ||
+                  "https://images.unsplash.com/photo-1564859228273-274232fdb516?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+                }
+                alt={images[index]?.alt}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         {/* <Image
           src={images[currentImage]?.src || "https://images.unsplash.com/photo-1564859228273-274232fdb516?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"}
           alt={images[currentImage]?.alt}
@@ -136,9 +156,8 @@ const ProductGallery = ({ images }) => {
         /> */}
       </figure>
     </div>
-  )
-
-}
+  );
+};
 
 //product reviews component
 const ProductReviews = ({ reviews }) => {
@@ -151,10 +170,8 @@ const ProductReviews = ({ reviews }) => {
             <StarIcon
               key={rating}
               className={cn(
-                reviews.average > rating
-                  ? "text-gray-900"
-                  : "text-gray-200",
-                "h-5 w-5 flex-shrink-0"
+                reviews.average > rating ? "text-gray-900" : "text-gray-200",
+                "h-5 w-5 flex-shrink-0",
               )}
               aria-hidden="true"
             />
@@ -168,17 +185,17 @@ const ProductReviews = ({ reviews }) => {
           {reviews.totalCount} reviews
         </a>
       </div>
-    </div>)
-}
+    </div>
+  );
+};
 
 const ProductSizeSelector = ({ sizes }) => {
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   return (
-
     <>
       <div className="mt-10">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm text-gray-900 font-medium">Size</h3>
+          <h3 className="text-sm font-medium text-gray-900">Size</h3>
           <a
             href="#"
             className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
@@ -192,9 +209,7 @@ const ProductSizeSelector = ({ sizes }) => {
           onChange={setSelectedSize}
           className="mt-4"
         >
-          <RadioGroup.Label className="sr-only">
-            Choose a size
-          </RadioGroup.Label>
+          <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
           <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
             {sizes.map((size) => (
               <RadioGroup.Option
@@ -204,36 +219,32 @@ const ProductSizeSelector = ({ sizes }) => {
                 className={({ active }) =>
                   cn(
                     size.inStock
-                      ? "bg-white shadow-sm text-gray-900 cursor-pointer"
-                      : "bg-gray-50 text-gray-200 cursor-not-allowed",
+                      ? "cursor-pointer bg-white text-gray-900 shadow-sm"
+                      : "cursor-not-allowed bg-gray-50 text-gray-200",
                     active ? "ring-2 ring-indigo-500" : "",
-                    "group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6"
+                    "group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6",
                   )
                 }
               >
                 {({ active, checked }) => (
                   <>
-                    <RadioGroup.Label as="p">
-                      {size.name}
-                    </RadioGroup.Label>
+                    <RadioGroup.Label as="p">{size.name}</RadioGroup.Label>
                     {size.inStock ? (
                       <div
                         className={cn(
                           active ? "border" : "border-2",
-                          checked
-                            ? "border-indigo-500"
-                            : "border-transparent",
-                          "absolute -inset-px rounded-md pointer-events-none"
+                          checked ? "border-indigo-500" : "border-transparent",
+                          "pointer-events-none absolute -inset-px rounded-md",
                         )}
                         aria-hidden="true"
                       />
                     ) : (
                       <div
                         aria-hidden="true"
-                        className="absolute -inset-px rounded-md border-2 border-gray-200 pointer-events-none"
+                        className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
                       >
                         <svg
-                          className="absolute inset-0 w-full h-full text-gray-200 stroke-2"
+                          className="absolute inset-0 h-full w-full stroke-2 text-gray-200"
                           viewBox="0 0 100 100"
                           preserveAspectRatio="none"
                           stroke="currentColor"
@@ -256,22 +267,19 @@ const ProductSizeSelector = ({ sizes }) => {
         </RadioGroup>
       </div>
     </>
-  )
-}
+  );
+};
 const ProductColorSelector = ({ colors }) => {
   const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
   return (
-
     <div>
-      <h3 className="text-sm text-gray-900 font-medium">Color</h3>
+      <h3 className="text-sm font-medium text-gray-900">Color</h3>
       <RadioGroup
         value={selectedColor}
         onChange={setSelectedColor}
         className="mt-4"
       >
-        <RadioGroup.Label className="sr-only">
-          Choose a color
-        </RadioGroup.Label>
+        <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
         <div className="flex items-center space-x-3">
           {colors.map((color) => (
             <RadioGroup.Option
@@ -282,7 +290,7 @@ const ProductColorSelector = ({ colors }) => {
                   color.selectedClass,
                   active && checked ? "ring ring-offset-1" : "",
                   !active && checked ? "ring-2" : "",
-                  "-m-0.5 relative rounded-full p-0.5 flex items-center justify-center cursor-pointer focus:outline-none"
+                  "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none",
                 )
               }
             >
@@ -293,7 +301,7 @@ const ProductColorSelector = ({ colors }) => {
                 aria-hidden="true"
                 className={cn(
                   color.class,
-                  "h-8 w-8 border border-black border-opacity-10 rounded-full"
+                  "h-8 w-8 rounded-full border border-black border-opacity-10",
                 )}
               />
             </RadioGroup.Option>
@@ -301,56 +309,46 @@ const ProductColorSelector = ({ colors }) => {
         </div>
       </RadioGroup>
     </div>
-  )
-}
+  );
+};
 
 const ProductVariants = ({ product }) => {
   return (
     <form className="mt-10" onSubmit={() => { }}>
-
       <ProductColorSelector colors={product.colors} />
       <ProductSizeSelector sizes={product.sizes} />
 
-      <div className='py-4'>
-
-        <Button size='normal' className='rounded-md px-10 py-4'>
-
+      <div className="py-4">
+        <Button size="normal" className="rounded-md px-10 py-4">
           Add to bag
         </Button>
       </div>
-
-    </form >
-  )
-}
-
+    </form>
+  );
+};
 
 const ProductDetails = ({ product }) => {
-
   return (
-    <div className='px-4 w-full'>
+    <div className="w-full px-4">
       <div className="lg:col-span-2 lg:pr-8">
         <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
           {product?.name}
         </h1>
       </div>
-      <div className="lg:border-b lg:pt-6 lg:pb-8 w-full  lg:col-span-2  lg:border-gray-200 ">
+      <div className="w-full lg:col-span-2 lg:border-b lg:border-gray-200  lg:pt-6  lg:pb-8 ">
         <div>
           <h3 className="sr-only">Description</h3>
 
           <div className="space-y-4">
-            <p className="text-base text-gray-900">
-              {product?.description}
-            </p>
+            <p className="text-base text-gray-900">{product?.description}</p>
           </div>
         </div>
 
         <div className="mt-10">
-          <h3 className="text-sm font-medium text-gray-900">
-            Highlights
-          </h3>
+          <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
           <div className="mt-4">
-            <ul role="list" className="pl-4 list-disc text-sm space-y-2">
+            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
               {product?.highlights.map((highlight) => (
                 <li key={highlight} className="text-gray-400">
                   <span className="text-gray-600">{highlight}</span>
@@ -369,17 +367,16 @@ const ProductDetails = ({ product }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ProductPage = () => {
-
   const router = useRouter();
   const { slug } = router.query;
 
   return (
     <Layout title="">
-      <div className="bg-white max-w-7xl">
+      <div className="max-w-7xl bg-white">
         <div className="pt-6">
           <Breadcrumb
             breadcrumb={product?.breadcrumbs}
@@ -387,23 +384,21 @@ const ProductPage = () => {
           />
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-6 px-4 py-16 sm:px-0 w-full'>
-
-          <div className=" pb-10 lg:pt-0 lg:pb-24 lg:px-8 w-full col-span-4">
+        <div className="grid w-full grid-cols-1 px-4 py-16 sm:px-0 lg:grid-cols-6">
+          <div className=" col-span-4 w-full pb-10 lg:px-8 lg:pt-0 lg:pb-24">
             <ProductGallery images={product?.images} />
           </div>
 
-          <div className='col-span-2'>
+          <div className="col-span-2">
             <div className="pt-10 pb-10 lg:pt-0 lg:pb-24 ">
               <ProductDetails product={product} />
             </div>
-            <div className="mt-4 lg:mt-0 lg:row-span-3 ">
+            <div className="mt-4 lg:row-span-3 lg:mt-0 ">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl text-gray-900">${product?.price}</p>
               <ProductReviews reviews={reviews} />
               <ProductVariants product={product} />
             </div>
-
           </div>
         </div>
       </div>

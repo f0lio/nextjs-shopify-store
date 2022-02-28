@@ -17,7 +17,7 @@ const Layout: React.FC<Props> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className="flex flex-col items-center justify-center w-full ">
+      <main className="flex w-full flex-col items-center justify-center ">
         {children}
       </main>
       <Footer />

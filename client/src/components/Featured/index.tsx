@@ -10,8 +10,8 @@ const FeaturedCard = ({ title, imgSrc }) => (
 );
 
 export default () => (
-  <section className="bg-gray-100 h-96 w-full flex flex-col-2 justify-center">
-    <div className=" max-w-7xl w-full  flex items-center justify-between px-3">
+  <section className="flex-col-2 flex h-96 w-full justify-center bg-gray-100">
+    <div className=" flex w-full  max-w-7xl items-center justify-between px-3">
       <FeaturedCard title="Lorem">
         {/* <FaShippingFast className="w-full h-full" /> */}
       </FeaturedCard>
@@ -24,4 +24,3 @@ export default () => (
     </div>
   </section>
 );
-
