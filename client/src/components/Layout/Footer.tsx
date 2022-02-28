@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="text-gray-600 body-font pt-10 ">
-      <div className="container px-5 py-8 mx-auto border-t flex items-center sm:flex-row flex-col">
+      <div className="max-w-7xl px-5 py-8 mx-auto border-t flex items-center sm:flex-row flex-col">
         <Link href="/">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img

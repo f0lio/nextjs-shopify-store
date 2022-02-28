@@ -7,7 +7,7 @@ module.exports = {
     API_VERSION: process.env.STORE_FRONT_API_VERSION,
   },
   images: {
-    domains: ["images.unsplash.com", "cdn.shopify.com"],
+    domains: ["images.unsplash.com", "cdn.shopify.com", "tailwindui.com"],
   },
   reactStrictMode: true,
   webpackDevMiddleware: (config) => {

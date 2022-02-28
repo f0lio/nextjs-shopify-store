@@ -1,6 +1,7 @@
 import Hero from "@components/Hero";
 import Layout from "@components/Layout";
 import HomeProducts from "@components/Lists";
+import FeaturedProducts from "@components/Featured";
 import { storefront, gql } from "utils";
 
 export default function Home({ products }) {
@@ -8,6 +9,7 @@ export default function Home({ products }) {
   return (
     <Layout title="Home">
       <Hero />
+      <FeaturedProducts />
       <HomeProducts />
     </Layout>
   );

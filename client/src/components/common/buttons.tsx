@@ -47,8 +47,6 @@ const Button: React.FC = <T extends ElementType = "button">({
   disabled = false,
   ...props
 }: Props<T>) => {
-  console.log(size);
-  console.log(classes.size[size]);
   return (
     <button
       as={renderAs}
