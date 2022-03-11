@@ -1,13 +1,13 @@
 version: '3'
 services:
   dev:
-    container_name: ekom-front-dev
+    container_name: storefront-dev
     build:
-      context: ./client
+      context: .
       dockerfile: Dockerfile.dev
       # network: host
     volumes:
-      - ./client:/opt/app
+      - ./:/opt/app
       - /opt/app/node_modules
       - /opt/app/.next
     ports:
@@ -15,15 +15,14 @@ services:
     # stdin_open: true
     # tty: true
   prod:
-    container_name: ekom-front-prod
+    container_name: storefront-prod
     build:
-      target: production
-      context: ./client
+      context: .
       dockerfile: Dockerfile.prod
       # network: host
     # restart: always
     volumes:
-      - /client:/opt/app
+      - .:/opt/app
       - /opt/app/node_modules
       - /opt/app/.next
     ports:
