@@ -1,15 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Shopify Store
+Minimal E-Commerce Store built with NextJS using Shopify Storefront API
 
-## Getting Started
+## Usage:
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+run:
+```shell
+npm install && npm run dev
 ```
+### OR
+*If you have `docker-compose`, you can run:*
+* `docker-compose up prod` for production container.
+* `docker-compose up dev` to start development mode. (Hot reload supported)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Technolologies:
+* TypeScript
+* React
+* NextJS
+* GraphQL
+* TailwindCSS
+* HeadlessUI
